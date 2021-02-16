@@ -4,3 +4,7 @@
 .vscode/
 *~
 \#*#
+
+# Go Files
+
+**/go.sum
