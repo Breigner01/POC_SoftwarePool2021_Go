@@ -4,16 +4,27 @@ import (
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
+func health(c *gin.Context) {
+	c.Status(http.StatusOK)
+}
+
 func world(c *gin.Context) {
-	c.String(http.StatusOK, "world")
+	str := os.Getenv("HELLO_MESSAGE")
+
+	if str == "" {
+		c.String(http.StatusNotFound, "No message defined")
+	} else {
+		c.String(http.StatusOK, str)
+	}
 }
 
 func repeatMyQuery(c *gin.Context) {
 	str, status := c.GetQuery("message")
 
-	if !status {
+	if !status || str == "" {
 		c.String(http.StatusBadRequest, "Missing message")
 	} else {
 		c.String(http.StatusOK, str)
@@ -58,6 +69,8 @@ func repeatMyCookie(c *gin.Context) {
 	str, err := c.Cookie("message")
 
 	if err != nil {
+		c.String(http.StatusBadRequest, "An error has occurred: %w", err)
+	} else if str == "" {
 		c.String(http.StatusBadRequest, "Missing message")
 	} else {
 		c.String(http.StatusOK, str)
@@ -65,6 +78,7 @@ func repeatMyCookie(c *gin.Context) {
 }
 
 func ApplyRoutes(r *gin.Engine) {
+	r.GET("/health", health)
 	r.GET("/hello", world)
 	r.GET("/repeat-my-query", repeatMyQuery)
 	r.GET("/repeat-my-param/:message", repeatMyParams)
