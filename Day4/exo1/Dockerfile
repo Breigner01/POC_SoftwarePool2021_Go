@@ -1,10 +1,10 @@
 FROM golang:alpine
 
-WORKDIR /usr/app
+WORKDIR /go/src/app
 
 ENV HELLOW_MESSAGE=docker
 
-COPY . /usr/app
+COPY . /go/src/app
 
 RUN go get github.com/gin-gonic/gin
 RUN go build
