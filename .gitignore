@@ -8,3 +8,7 @@
 # Go Files
 
 **/go.sum
+
+# Node Files and Folders
+
+node_modules/

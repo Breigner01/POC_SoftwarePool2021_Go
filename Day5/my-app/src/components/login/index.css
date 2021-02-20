@@ -1,0 +1,74 @@
+body {
+    background-color: #181823;
+}
+
+.username {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.password {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.usernameInput,
+.passwordInput {
+    color: #c4c4c4;
+    background-color: #21212f;
+    border-radius: 15px;
+    padding: 5px 10px 5px 10px;
+}
+
+.usernameInput {
+    margin-left: 10px;
+}
+
+.passwordInput {
+    margin-left: 16px;
+}
+
+.label {
+    color: #c4c4c4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.userInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.submitButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.submitButtonContent {
+    width: 100px;
+    margin-top: 10px;
+    color: #c4c4c4;
+    background-color: #21212f;
+    border-radius: 15px;
+    padding: 5px 10px 5px 10px;
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.title {
+    color: #c4c4c4;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

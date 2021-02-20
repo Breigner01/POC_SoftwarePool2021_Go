@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+    database:
+        image: postgres:alpine
+        environment:
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=database
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./database:/var/lib/postgresql/data
+        networks:
+            - backend
+
+    back:
+        image: software-pool2021/day4-exo2-back
+        build: back
+        environment:
+            - DB_USER=root
+            - DB_PASS=password
+            - DB_HOST=database
+            - DB_PORT=5432
+            - DB_NAME=database
+            - API_PORT=8080
+            - API_HOST=0.0.0.0
+        ports:
+            - "8080:8080"
+        networks:
+            - backend
+
+    front:
+        image: software-pool2021/day4-exo2-front
+        build: front
+        environment:
+            - REACT_APP_API_URL=http://0.0.0.0:8080
+        ports:
+            - "3000:3000"
+
+networks:
+    backend:
